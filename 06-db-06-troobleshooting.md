@@ -58,7 +58,11 @@ InterfaceError: (InterfaceError) 2013: Lost connection to MySQL server during qu
 ```
 Как вы думаете, почему это начало происходить и как локализовать проблему?
 ```bash
+<<<<<<< HEAD
 Основываясь на документации MySQL https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html возможны три причины:
+=======
+https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html возможны три причины:
+>>>>>>> 41a1287 (Initial commit)
 1. Слишком объемные запросы на миллионы строк, рекомендуется увеличение параметра net_read_timeout
 2. Малое значение параметра connect_timeout, клиент не успевает установить соединение.
 3. Размер сообщения/запроса превышает размер буфера max_allowed_packet на сервере или max_allowed_packet на строне клиента.
@@ -68,4 +72,30 @@ InterfaceError: (InterfaceError) 2013: Lost connection to MySQL server during qu
 1. Увеличить на сервере MySQL wait_timeout, max_allowed_packet, net_write_timeout и net_read_timeout
 2. В SQLAlchemy уменьшить pool_recycle, wait_timeout
 3. При исчезновении ошибки Lost connection to MySQL server during query возвращать по одному параметры в исходное состояние - для локализации проблемы.
+<<<<<<< HEAD
+=======
+```
+
+#### Задача 4
+Перед выполнением задания ознакомьтесь со статьей [Common PostgreSQL errors](https://www.percona.com/blog/2020/06/05/10-common-postgresql-errors/) из блога Percona.
+Вы решили перевести гис-систему из задачи 3 на PostgreSQL, так как прочитали в документации, что эта СУБД работает с 
+большим объемом данных лучше, чем MySQL.
+После запуска пользователи начали жаловаться, что СУБД время от времени становится недоступной. В dmesg вы видите, что:
+`postmaster invoked oom-killer`
+Как вы думаете, что происходит?
+```bash
+Postgres нехватает памяти.
+Когда у сервера/процесса заканчивается память, Linux предлагает два пути решения: утилизировать всю память и тем самым убить всю систему или завершить процесс, который съедает память.
+Out-Of-Memory Killer — это процесс, который завершает приложение, чтобы спасти ядро от сбоя.
+```
+Как бы вы решили данную проблему?
+```bash
+1. По возможности добавить ресурсов (RAM), провести ревизию и отключить/перенести ненужные приложения.
+2. Произвести настройку параметров, затрагивающих память в Postgres:
+max_connections
+shared_buffer
+work_mem
+effective_cache_size
+maintenance_work_mem
+>>>>>>> 41a1287 (Initial commit)
 ```
