@@ -98,4 +98,6 @@ maintenance_work_mem
 ```
 
 
-
+Произошел rebase, поэтому комит `41a1287` был перезаписан, а остались всего два `5957167` и `e850b3d`.
+Команда `git reflog` это показывает.
+![](https://github.com/melnik-evgeniy/06-db-06-troobleshooting/blob/8e4a4aa9dbb4012aeef58bb2398e369ec92b5c77/1.jpg?raw=true)
