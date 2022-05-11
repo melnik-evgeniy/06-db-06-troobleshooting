@@ -58,11 +58,10 @@ InterfaceError: (InterfaceError) 2013: Lost connection to MySQL server during qu
 ```
 Как вы думаете, почему это начало происходить и как локализовать проблему?
 ```bash
-<<<<<<< HEAD
 Основываясь на документации MySQL https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html возможны три причины:
-=======
+
 https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html возможны три причины:
->>>>>>> 41a1287 (Initial commit)
+
 1. Слишком объемные запросы на миллионы строк, рекомендуется увеличение параметра net_read_timeout
 2. Малое значение параметра connect_timeout, клиент не успевает установить соединение.
 3. Размер сообщения/запроса превышает размер буфера max_allowed_packet на сервере или max_allowed_packet на строне клиента.
@@ -72,7 +71,6 @@ https://dev.mysql.com/doc/refman/8.0/en/error-lost-connection.html возмож�
 1. Увеличить на сервере MySQL wait_timeout, max_allowed_packet, net_write_timeout и net_read_timeout
 2. В SQLAlchemy уменьшить pool_recycle, wait_timeout
 3. При исчезновении ошибки Lost connection to MySQL server during query возвращать по одному параметры в исходное состояние - для локализации проблемы.
-<<<<<<< HEAD
 =======
 ```
 
@@ -97,5 +95,7 @@ shared_buffer
 work_mem
 effective_cache_size
 maintenance_work_mem
->>>>>>> 41a1287 (Initial commit)
 ```
+
+
+
